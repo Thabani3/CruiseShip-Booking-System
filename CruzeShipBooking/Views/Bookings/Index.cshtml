@@ -1,0 +1,133 @@
+﻿@model IEnumerable<CruzeShipBooking.Models.Booking>
+
+@{
+    ViewBag.Title = "Index";
+}
+@if (User.IsInRole("Admin"))
+{
+    <h2>All Bookins</h2>
+}
+else
+{
+    <h2>My Bookings</h2>
+    <p>
+        @Html.ActionLink("Make New Booking", "Create", null, new { @class ="btn btn-success" })
+    </p>
+}
+
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingPackage.BookingPackageDescription)
+        </th>
+        @if (User.IsInRole("Admin"))
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerEmail)
+            </th>
+        }
+        <th>
+            @Html.DisplayNameFor(model => model.DateBookingFor)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.BookingPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReferenceNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingStatus)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.BookingPackage.BookingPackageDescription)
+    </td>
+    @if (User.IsInRole("Admin"))
+    {
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerEmail)
+        </td>
+    }
+
+    <td>
+        @Html.DisplayFor(modelItem => item.DateBookingFor)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.BookingPrice)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ReferenceNumber)
+    </td>
+    <td>
+        @if (item.BookingStatus == "Awaiting Approval")
+        {
+            <span class="badge badge-warning">
+                @Html.DisplayFor(modelItem => item.BookingStatus)
+            </span>
+        }
+        else if (item.BookingStatus == "Booking Confirmed")
+        {
+            <span class="badge badge-primary">
+                @Html.DisplayFor(modelItem => item.BookingStatus)
+            </span>
+        }
+        else {
+            <span class="badge badge-info">
+                @Html.DisplayFor(modelItem => item.BookingStatus)
+            </span>
+        }
+
+
+
+    </td>
+    @if (User.IsInRole("Customer"))
+    {
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.BookingId }, new { @class = "btn-sm btn-success" }) |
+        @if (!item.IsPaid)
+        {
+            @Html.ActionLink("Pay", "BookingConfirmation", new { id = item.BookingId }, new { @class = "btn-sm btn-success" }) 
+
+}
+
+        @Html.ActionLink("Details", "Details", new { id = item.BookingId }, new { @class = "btn-sm btn-info" }) |
+        @Html.ActionLink("Cancel Booking", "Delete", new { id = item.BookingId }, new { @class = "btn-sm btn-danger" })
+    </td>
+    }
+    @if (User.IsInRole("Admin"))
+    {
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id = item.BookingId }) |*@
+            @Html.ActionLink("Details", "Details", new { id = item.BookingId }) |
+
+            @if (item.BookingStatus == "Booking Confirmed")
+            {
+                @Html.ActionLink("Check In Booking", "CheckInBooking", new { id = item.BookingId })
+
+            }
+            else if (item.BookingStatus == "Booking Checked In")
+            {
+                @Html.ActionLink("Cehck Out Booking", "CheckOutBooking", new { id = item.BookingId })
+            }
+            else if (item.BookingStatus == "Awaiting Approval")
+            {
+                @Html.ActionLink("Confirm Booking", "ConfirmBooking", new { id = item.BookingId })
+            }
+            else
+            {
+                @Html.Name("Booking Completed");
+            }
+        </td>
+    }
+
+</tr>
+    }
+
+</table>

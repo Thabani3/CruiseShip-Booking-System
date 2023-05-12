@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CruzeShipBooking.Models.BookingPackage>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Booking Packages</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingType.BookingTypeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingPackageDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PackagePrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PackageAcomodationQuantity)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookingType.BookingTypeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookingPackageDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PackagePrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PackageAcomodationQuantity)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BookingPackageId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BookingPackageId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BookingPackageId })
+        </td>
+    </tr>
+}
+
+</table>

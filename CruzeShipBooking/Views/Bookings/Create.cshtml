@@ -1,0 +1,231 @@
+﻿@model CruzeShipBooking.Models.Booking
+
+@{
+    ViewBag.Title = "Create";
+    var booking = ViewBag.booking;
+}
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal mt-5 pb-5">
+    <h2> Make Booking</h2>
+    <hr />
+
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.CustomerEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CustomerEmail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CustomerEmail, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <hr />
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.BookingPackageId, "Choose Package", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("BookingPackageId", null, htmlAttributes: new { @class = "form-control", @id = "package" })
+
+                @Html.ValidationMessageFor(model => model.BookingPackageId, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <div class="form-group border ml-5 d-flex" style="padding-left:210px;">
+        <span class="font-weight-bold">Choose Package: </span>
+        <select name="BookingPackageId" id="packages" required class="form-control">
+            <option disabled selected>Choose Package</option>
+            @foreach (var item in booking)
+            {
+                <option value="@item.BookingPackageId" data-nm="@item.BookingPackageDescription" data-vl="@item.PackageAcomodationQuantity">@item.BookingPackageDescription</option>
+            }
+        </select>
+    </div>
+    <div>
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DateBookingFor, "Cruize Date", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DateBookingFor, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DateBookingFor, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.DateBooked, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DateBooked, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateBooked, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.BookingPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BookingPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BookingPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.BookingStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BookingStatus, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BookingStatus, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.ReferenceNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ReferenceNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ReferenceNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+    <br />
+
+
+    <h6><b>Catering</b></h6>
+    <hr />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Food, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Food)
+                @Html.ValidationMessageFor(model => model.Food, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Beverages, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Beverages)
+                @Html.ValidationMessageFor(model => model.Beverages, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Alcohol, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Alcohol)
+                @Html.ValidationMessageFor(model => model.Alcohol, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.Decor, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Decor, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Decor, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <br />
+    <h6><b>Decor</b></h6>
+    <hr />
+    <div class="form-group">
+        @Html.RadioButtonFor(model => model.Decor, "Simple", true) Simple <br />
+        @Html.RadioButtonFor(model => model.Decor, "Luxury") Luxury<br />
+    </div>
+
+
+    <br />
+    <hr />
+    <div class="form-group">
+        @Html.LabelFor(model => model.NumGuest, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @*  @Html.EditorFor(model => model.NumGuest, new { htmlAttributes = new { @class = "form-control", @onKeyup= "numGuest();", @id= "numGuest" } })*@
+            <input type="number" name="numGuest" id="numGuest" onkeyup="numGuest();" class="form-control" />
+            @Html.ValidationMessageFor(model => model.NumGuest, "", new { @class = "text-danger", @id = "numGuestvalid" })
+        </div>
+    </div>
+
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.BasicCost, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.BasicCost)
+                    @Html.ValidationMessageFor(model => model.BasicCost, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>*@
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.IsPaid, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsPaid)
+                    @Html.ValidationMessageFor(model => model.IsPaid, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>*@
+
+    @*<input id="clockHours" type="range" min="10" max="200" />*@
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" id="submit" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+
+
+
+}
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+@*<script>
+    $(function () {
+        $("#clockHoursJQuery").slider({
+            min: 10,
+            max: 200
+        });
+    });
+</script>*@
+
+
+<script>
+
+    var guest = document.getElementById("numGuest");
+    var  submit = document.getElementById("submit");
+    var packages = document.getElementById("packages");
+  
+    guest.onkeyup = function () {
+        var numGuest = parseInt(packages.selectedOptions[0].getAttribute("data-vl"));
+        var disGuest = packages.selectedOptions[0].getAttribute("data-nm");
+        if (parseInt(guest.value) > numGuest) {
+            submit.disabled = true;
+            document.getElementById("numGuestvalid").innerHTML = "For \'" + disGuest + "\' we accept Guests that are less than " + numGuest + " NOT (" + parseInt(guest.value)+")";
+        } else {
+            submit.disabled = false;
+            document.getElementById("numGuestvalid").innerHTML = "";
+        }
+    }
+    
+</script>
+
+
+

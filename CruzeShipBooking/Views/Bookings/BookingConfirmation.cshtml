@@ -1,0 +1,123 @@
+﻿@model CruzeShipBooking.Models.Booking
+
+@{
+    ViewBag.Title = "BookingConfirmation";
+    var packages = ViewBag.packages;
+}
+
+<h2>Booking Confirmation</h2>
+
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingPackage.BookingPackageDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookingPackage.BookingPackageDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateBookingFor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateBookingFor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateBooked)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateBooked)
+        </dd>
+        <br />
+        <dt>
+            Package Price:
+        </dt>
+
+        <dd>
+            @packages
+        </dd>
+        @*@if (Model.Food == true)
+        {*@
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalFood)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalFood)
+        </dd>
+        @*}
+        @if (Model.Beverages == true)
+        {*@
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalDrinks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalDrinks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalAcohol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalAcohol)
+        </dd>
+        @*}*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalDecoration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalDecoration)
+        </dd>
+        <br />
+        <hr />
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookingPrice)
+        </dd>
+        <hr />
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookingStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReferenceNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReferenceNumber)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Accept", "AcceptBooking", new { id = Model.BookingId }, new { @class = "btn-sm btn-success" }) |
+    @Html.ActionLink("Pay Later", "Index", null, new { @class = "btn-sm btn-primary" }) |
+
+    @Html.ActionLink("Reject", "CancelPayment", new { id = Model.BookingId }, new { @class = "btn-sm btn-danger" })
+</p>

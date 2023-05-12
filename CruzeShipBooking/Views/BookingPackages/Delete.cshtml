@@ -1,0 +1,56 @@
+﻿@model CruzeShipBooking.Models.BookingPackage
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>BookingPackage</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingType.BookingTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookingType.BookingTypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingPackageDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookingPackageDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PackagePrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PackagePrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PackageAcomodationQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PackageAcomodationQuantity)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
